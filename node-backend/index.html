@@ -1,0 +1,40 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend</title>
+    <script src="server.js"></script>
+   
+</head>
+<body>
+    <h1>Frontend</h1>
+    <button onclick="fetchBackend()">Get Backend Output</button>
+    <p id="output"></p>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input to Backend</title>
+    <script src="script.js" defer>
+        const cors = require('cors');
+        app.use(cors());
+    </script>
+</head>
+<body>
+    <h1>Send Input to Backend</h1>
+    <form id="inputForm">
+        <label for="userInput">Enter a message:</label>
+        <input type="text" id="userInput" name="userInput" required>
+        <button type="submit">Submit</button>
+    </form>
+    <p id="output">Response will appear here.</p>
+</body>
+</html>
+
