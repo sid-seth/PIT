@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Dropdown from "./dropdown";
-const socket = new WebSocket('ws://localhost:5001');
+// import Dropdown from "./dropdown";
+// const socket = new WebSocket('ws://localhost:5001');
 
 
 // Connect to WebSocket server
@@ -20,21 +20,26 @@ const socket = new WebSocket('ws://localhost:5001');
 // };
 function App() {
 
-    const [input, setInput] = useState('');
+    // const [input, setInput] = useState('');
     const [input_income, setInput_income] = useState('');
-    const [input_income_des, setInput_income_des] = useState('');
+    const [input_des, setInput_des] = useState('');
+    const [input_exp, setInput_exp] = useState('');
+    
+    const [input_exp_des, setInput_exp_des] = useState('');
+    const [input_mi_des, setInput_mi_des] = useState('');
+
 
 
     const [output, setOutput] = useState([]);
-    const [input_1, setInput_1] = useState('');
+    // const [input_1, setInput_1] = useState('');
     // const [output_1, setOutput_1] = useState('');
     const [output_1, setOutput_1] = useState([]);
-    const [buttonText, setButtonText] = useState("SUBMIT i"); 
+    // const [buttonText, setButtonText] = useState("SUBMIT i"); 
 
     // const [input_2, setInput_2] = useState('');
     const [output_2, setOutput_2] = useState('');
-    const [input_5, setInput_5] = useState('');
-    const [input_6, setInput_6] = useState('');
+    // const [input_5, setInput_5] = useState('');
+    // const [input_6, setInput_6] = useState('');
 
     // const [showDropdown, setShowDropdown] = useState(false);
     // const description = "description"; // Predefined value to compare with output
@@ -97,28 +102,48 @@ function App() {
     //     setInput(""); // Reset the input field after submission
     //   };
       const [visibleDropdown, setVisibleDropdown] = useState(null); // Track which dropdown is open
+      const [Hide_submitted_fields,setHide_submitted_fields]=useState(true);
       const [visibleDropdown_1, setVisibleDropdown_1] = useState(null); // Track which dropdown is open
+       const [step, setStep] = useState(1);
 
+       const count_step =(event)=>{
+          if(step >= 3){
+            setStep(1);
+            toggleDropdown_1(event);
+          }
+          else
+        setStep((prevStep) => prevStep + 1);
+       }
       const toggleDropdown = (event) => {
         const id = event.target.value;
         // Toggle visibility of the dropdown
         setVisibleDropdown(visibleDropdown === id ? null : id);
-        if (visibleDropdown !== id) {
-            setVisibleDropdown_1(null); // Reset child dropdown when parent dropdown changes
+        if (visibleDropdown === id) {
+            setVisibleDropdown_1(null); 
+          // Reset child dropdown when parent dropdown changes
           }
       };
+      
+        const field_val = (event) => {
+      
+        // Toggle visibility of the dropdown
+        setHide_submitted_fields(Hide_submitted_fields === true ?false : true);
+      };
+
+
+
       const toggleDropdown_1 = (event) => {
         const id = event.target.value;
         // Toggle visibility of the dropdown
         setVisibleDropdown_1(visibleDropdown_1 === id ? null : id);
       };
     
-      const handleSubmit_val = () => {
-        setInput("");
-        alert(`Dropdown submitted value: ${input}`);
-      };
+      // const handleSubmit_val = () => {
+      //   setInput("");
+      //   alert(`Dropdown submitted value: ${input}`);
+      // };
       const handleSubmit_val_income = (event) => {
-        setInput("");
+        // setInput("");
         alert(`Dropdown submitted value: ${event}`);
       };
 
@@ -220,11 +245,11 @@ function App() {
             console.log(lines);
         // Join lines back if needed or use them directly
            setOutput(lines);
-           if(buttonText==="description")
-           {
+          //  if(buttonText==="description")
+          //  {
 
-            setVisibleDropdown_1(null);
-           }
+          //   setVisibleDropdown_1(null);
+          //  }
        } else {
            // Handle errors (e.g., "Process is already running")
            // setOutput(data.error || "An error occurred.");
@@ -236,7 +261,7 @@ function App() {
         // Join lines back if needed or use them directly
            setOutput(lines);
        }
-       setInput("");
+      //  setInput("");
        
    }
    catch (error) {
@@ -307,7 +332,7 @@ function App() {
          // Join lines back if needed or use them directly
             setOutput(lines);
         }
-        setInput("");
+        // setInput("");
         
     }
     catch (error) {
@@ -324,51 +349,51 @@ function App() {
 
 
 //    Give Input values
-   const handleSubmit = async () => {
-    try{
+//    const handleSubmit = async () => {
+//     try{
      
 
 
-     const isNumber = !isNaN(input) && input.trim() !== "";
-     const response = await fetch("http://localhost:5000/send-input", {
-         method: "POST",
-         headers: {
-             "Content-Type": "application/json",
-         },
-         body: JSON.stringify({
-             input: isNumber ? parseInt(input, 10) : input, // Convert to number if applicable
-         }),
-     });
+//      const isNumber = !isNaN(input) && input.trim() !== "";
+//      const response = await fetch("http://localhost:5000/send-input", {
+//          method: "POST",
+//          headers: {
+//              "Content-Type": "application/json",
+//          },
+//          body: JSON.stringify({
+//              input: isNumber ? parseInt(input, 10) : input, // Convert to number if applicable
+//          }),
+//      });
 
-     // const response = await fetch('http://localhost:5000/send-input', {
-     //     method: 'POST',
-     //     headers: {
-     //         'Content-Type': 'application/json',
-     //     },
-     //     body: JSON.stringify({ input: parseInt(input, 10) }),
-     // });
-     const data = await response.json();
-     if (response.ok) {
-         // Display the 'message' from the server (e.g., "Process started successfully")
-         setOutput(data.message);
-     } else {
-         // Handle errors (e.g., "Process is already running")
-         const errorArray = data.error.message.split("\n"); // Split the error message by spaces
+//      // const response = await fetch('http://localhost:5000/send-input', {
+//      //     method: 'POST',
+//      //     headers: {
+//      //         'Content-Type': 'application/json',
+//      //     },
+//      //     body: JSON.stringify({ input: parseInt(input, 10) }),
+//      // });
+//      const data = await response.json();
+//      if (response.ok) {
+//          // Display the 'message' from the server (e.g., "Process started successfully")
+//          setOutput(data.message);
+//      } else {
+//          // Handle errors (e.g., "Process is already running")
+//          const errorArray = data.error.message.split("\n"); // Split the error message by spaces
 
-    setOutput(errorArray  || ["An error occurred."]);
-        //  setOutput(data.error || "An error occurred.");
-     }
-     setInput("");
+//     setOutput(errorArray  || ["An error occurred."]);
+//         //  setOutput(data.error || "An error occurred.");
+//      }
+//      setInput("");
      
- }
- catch (error) {
-     console.error("Error:", error);
-     const errorArray = error.message.split(" "); // Split the error message by spaces
+//  }
+//  catch (error) {
+//      console.error("Error:", error);
+//      const errorArray = error.message.split(" "); // Split the error message by spaces
 
-    setOutput(errorArray);
-    //  setOutput(error); // Handle network or other errors
- }
- };
+//     setOutput(errorArray);
+//     //  setOutput(error); // Handle network or other errors
+//  }
+//  };
     
 
 
@@ -377,7 +402,7 @@ function App() {
 
     const handleSubmit_2 = async (event) => {
        try{
-
+           setOutput_1([]);
            const fixedInput = event.target.value;
            const response = await fetch('http://localhost:5000/stop-exe', {
                method: 'POST',
@@ -431,40 +456,45 @@ function App() {
 
       {visibleDropdown === "1" && (
         <div className="dropdown">
-          <input
-            type="number"
-            value={input_income}
-            onChange={(e) => setInput_income(e.target.value)}
-            placeholder="Enter input"
-          />
-          {/* <button onClick={()=>{handleDropdownSubmit();handleSubmit()}}>SUBMIT VALUE</button> */}
-          <button onClick={(enent)=>{handleSubmit_income(input_income);handleSubmit_val_income(input_income);setButtonText("Description");}}>{buttonText}</button>
-          <input
+          {
+
+           Hide_submitted_fields === true  &&(
+
+            <div>
+
+            < input
             type="text"
             value={input_income}
             onChange={(e) => setInput_income(e.target.value)}
             placeholder="Enter input"
-          />
+            
+            
+            />
+          
           {/* <button onClick={()=>{handleDropdownSubmit();handleSubmit()}}>SUBMIT VALUE</button> */}
-          <button onClick={(enent)=>{handleSubmit_income(input_income);handleSubmit_val_income(input_income);}}>SUBMIT i</button>
+          <button onClick={(event)=>{handleSubmit_income(input_income);handleSubmit_val_income(input_income);field_val();}}>SUBMIT i</button>
+            </div>
+          )}
+           {
 
+           Hide_submitted_fields === false  &&(
+
+            <div>
 
           <input
-            type="number"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
+            type="text"
+            value={input_des}
+            onChange={(e) => setInput_des(e.target.value)}
             placeholder="Enter input"
           />
           {/* <button onClick={()=>{handleDropdownSubmit();handleSubmit()}}>SUBMIT VALUE</button> */}
-          <button onClick={()=>{handleSubmit();handleSubmit_val();}}>SUBMIT VALUE</button>
+          <button onClick={(event)=>{handleSubmit_income(input_des);handleSubmit_val_income(input_des);field_val();toggleDropdown(event);}}> SUBMIT d</button>
+          </div>
+          )}
 
-          <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Enter input"
-            />
-            <button onClick={()=>{handleSubmit();handleSubmit_val();}} >SUBMIT DESCRIPTION</button>
+
+
+      
         </div>
         
       )}
@@ -476,22 +506,36 @@ function App() {
 
       {visibleDropdown === "2" && (
         <div className="dropdown">
-          <input
-            type="number"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
+           {
+
+           Hide_submitted_fields === true  &&(
+
+            <div>
+           <input
+            type="text"
+            value={input_exp}
+            onChange={(e) => setInput_exp(e.target.value)}
             placeholder="Enter input"
           />
           {/* <button onClick={()=>{handleDropdownSubmit();handleSubmit()}}>SUBMIT VALUE</button> */}
-          <button onClick={()=>{handleSubmit();handleSubmit_val();}}>SUBMIT VALUE</button>
+          <button onClick={(event)=>{handleSubmit_income(input_exp);handleSubmit_val_income(input_exp);field_val();}}>SUBMIT e</button>
+             </div>
+          )}
+           {
 
+           Hide_submitted_fields === false  &&(
+
+            <div>
           <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Enter input"
-            />
-            <button onClick={handleSubmit} >SUBMIT DESCRIPTION</button>
+            type="text"
+            value={input_exp_des}
+            onChange={(e) => setInput_exp_des(e.target.value)}
+            placeholder="Enter input"
+          />
+          {/* <button onClick={()=>{handleDropdownSubmit();handleSubmit()}}>SUBMIT VALUE</button> */}
+          <button onClick={(event)=>{handleSubmit_income(input_exp_des);handleSubmit_val_income(input_exp_des);field_val();toggleDropdown(event);}}> SUBMIT d</button>
+          </div>
+           )}
         </div>
       )}
     </div>
@@ -521,99 +565,127 @@ function App() {
        <button onClick={handleOption}  value="4"> Research </button>
 
 
-      <button onClick={handleOption}  value="0" >back</button>
+      <button onClick={(event)=>{toggleDropdown(event);toggleDropdown_1(event);handleOption(event);}}  value="5" >back</button>
          
         </div>
       )}
       {visibleDropdown_1 === "1" && (
       <div>
-
-            <input
-            type="number"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
+      {step === 1 && (
+        <div>
+            
+           <input
+            type="text"
+            value={input_exp}
+            onChange={(e) => setInput_exp(e.target.value)}
             placeholder="Enter input"
           />
           {/* <button onClick={()=>{handleDropdownSubmit();handleSubmit()}}>SUBMIT VALUE</button> */}
-          <button onClick={()=>{handleSubmit();handleSubmit_val();}}>SUBMIT </button>
+          <button onClick={(event)=>{handleSubmit_income(input_exp);handleSubmit_val_income(input_exp);count_step(event);}}>SUBMIT FD</button>
+          </div>
+      )}
+      {step === 2 && (
+        <div>
           <input
-            type="number"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
+            type="text"
+            value={input_exp_des}
+            onChange={(e) => setInput_exp_des(e.target.value)}
             placeholder="Enter input"
           />
           {/* <button onClick={()=>{handleDropdownSubmit();handleSubmit()}}>SUBMIT VALUE</button> */}
-          <button onClick={()=>{handleSubmit();handleSubmit_val();}}>SUBMIT VALUE</button>
+          <button onClick={(event)=>{handleSubmit_income(input_exp_des);handleSubmit_val_income(input_exp_des);count_step(event);}}> SUBMIT dur</button>
+       </div>
+      )}
+          {step === 3 && (
+        <div>
           <input
-            type="number"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
+            type="text"
+            value={input_mi_des}
+            onChange={(e) => setInput_mi_des(e.target.value)}
             placeholder="Enter input"
           />
           {/* <button onClick={()=>{handleDropdownSubmit();handleSubmit()}}>SUBMIT VALUE</button> */}
-          <button onClick={()=>{handleSubmit();handleSubmit_val();}}>SUBMIT VALUE</button>
-           
+          <button onClick={(event)=>{handleSubmit_income(input_mi_des);handleSubmit_val_income(input_mi_des);count_step(event);}}> SUBMIT Mont</button>
+      </div>
+      )}
     </div>
     )}
     {visibleDropdown_1 === "2" && (
       <div>
 
-            <input
-            type="number"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
+           {
+
+           Hide_submitted_fields === true  &&(
+
+            <div>
+           <input
+            type="text"
+            value={input_exp}
+            onChange={(e) => setInput_exp(e.target.value)}
             placeholder="Enter input"
           />
           {/* <button onClick={()=>{handleDropdownSubmit();handleSubmit()}}>SUBMIT VALUE</button> */}
-          <button onClick={()=>{handleSubmit();handleSubmit_val();}}>SUBMIT VALUE</button>
+          <button onClick={(event)=>{handleSubmit_income(input_exp);handleSubmit_val_income(input_exp);field_val();}}>SUBMIT e</button>
+             </div>
+          )}
+           {
+
+           Hide_submitted_fields === false  &&(
+
+            <div>
           <input
-            type="number"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
+            type="text"
+            value={input_exp_des}
+            onChange={(e) => setInput_exp_des(e.target.value)}
             placeholder="Enter input"
           />
           {/* <button onClick={()=>{handleDropdownSubmit();handleSubmit()}}>SUBMIT VALUE</button> */}
-          <button onClick={()=>{handleSubmit();handleSubmit_val();}}>SUBMIT </button>
-          <input
-            type="number"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Enter input"
-          />
-          {/* <button onClick={()=>{handleDropdownSubmit();handleSubmit()}}>SUBMIT VALUE</button> */}
-          <button onClick={()=>{handleSubmit();handleSubmit_val();}}>SUBMIT VALUE</button>
+          <button onClick={(event)=>{handleSubmit_income(input_exp_des);handleSubmit_val_income(input_exp_des);field_val();toggleDropdown_1(event);}}> SUBMIT d</button>
+          </div>
+           )}
+          
            
     </div>
     )}
     {visibleDropdown_1 === "3" && (
       <div>
-
-          <button onClick={handleOption}  value="4"> Research </button>
-            <input
-            type="number"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
+{step === 1 && (
+        <div>
+            
+           <input
+            type="text"
+            value={input_exp}
+            onChange={(e) => setInput_exp(e.target.value)}
             placeholder="Enter input"
           />
           {/* <button onClick={()=>{handleDropdownSubmit();handleSubmit()}}>SUBMIT VALUE</button> */}
-          <button onClick={()=>{handleSubmit();handleSubmit_val();}}>SUBMIT VALUE </button>
-
+          <button onClick={(event)=>{handleSubmit_income(input_exp);handleSubmit_val_income(input_exp);count_step(event);}}>SUBMIT FD</button>
+          </div>
+      )}
+      {step === 2 && (
+        <div>
           <input
-            type="number"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
+            type="text"
+            value={input_exp_des}
+            onChange={(e) => setInput_exp_des(e.target.value)}
             placeholder="Enter input"
           />
           {/* <button onClick={()=>{handleDropdownSubmit();handleSubmit()}}>SUBMIT VALUE</button> */}
-          <button onClick={()=>{handleSubmit();handleSubmit_val();}}>SUBMIT VALUE</button>
+          <button onClick={(event)=>{handleSubmit_income(input_exp_des);handleSubmit_val_income(input_exp_des);count_step(event);}}> SUBMIT dur</button>
+       </div>
+      )}
+          {step === 3 && (
+        <div>
           <input
-            type="number"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
+            type="text"
+            value={input_mi_des}
+            onChange={(e) => setInput_mi_des(e.target.value)}
             placeholder="Enter input"
           />
           {/* <button onClick={()=>{handleDropdownSubmit();handleSubmit()}}>SUBMIT VALUE</button> */}
-          <button onClick={()=>{handleSubmit();handleSubmit_val();}}>SUBMIT </button>
+          <button onClick={(event)=>{handleSubmit_income(input_mi_des);handleSubmit_val_income(input_mi_des);count_step(event);}}> SUBMIT Mont</button>
+      </div>
+      )}
            
     </div>
     )}

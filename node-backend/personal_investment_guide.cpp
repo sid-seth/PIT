@@ -417,7 +417,7 @@ void loadData(std::vector<T*>& data, const std::string& filename) {
 
     void makeInvestment() {
         int sub = -1;
-        while (sub != 0) {
+        while (sub != 5) {
             cout << "\nWhich one:\n";
             cout << "1. SIP\n";
             cout << "2. FD\n";
@@ -484,7 +484,7 @@ void loadData(std::vector<T*>& data, const std::string& filename) {
                     system("python decision.py");
                 }
 
-                case 0:
+                case 5:
 
                     
                     break;
