@@ -16,15 +16,15 @@ app.use(express.json());
 
 
 // Set up a WebSocket server
-const wss = new WebSocket.Server({ port: 5001 }); // Use a separate port for WebSocket communication
+// const wss = new WebSocket.Server({ port: 5001 }); // Use a separate port for WebSocket communication
 
-wss.on('connection', (ws) => {
-    console.log('Client connected to WebSocket');
+// wss.on('connection', (ws) => {
+//     console.log('Client connected to WebSocket');
 
-    ws.on('close', () => {
-        console.log('Client disconnected from WebSocket');
-    });
-});
+//     ws.on('close', () => {
+//         console.log('Client disconnected from WebSocket');
+//     });
+// });
 
 let buffer = "";
 
@@ -38,13 +38,13 @@ let buffer = "";
 // });
 
 // Broadcast output to all connected WebSocket clients
-function broadcastToClients(data) {
-    wss.clients.forEach((client) => {
-        if (client.readyState === WebSocket.OPEN) {
-            client.send(data);
-        }
-    });
-}
+// function broadcastToClients(data) {
+//     wss.clients.forEach((client) => {
+//         if (client.readyState === WebSocket.OPEN) {
+//             client.send(data);
+//         }
+//     });
+// }
 
 
 
