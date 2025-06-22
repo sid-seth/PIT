@@ -11,7 +11,9 @@ app.use(cors());
 // Middleware to parse JSON request bodies
 app.use(express.json());
 
-const WebSocket = require('ws');
+
+
+
 
 // Set up a WebSocket server
 const wss = new WebSocket.Server({ port: 5001 }); // Use a separate port for WebSocket communication
