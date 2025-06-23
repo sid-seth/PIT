@@ -65,7 +65,7 @@ let cppProcess = null;
 app.post('/start-exe', (req, res) => {
     if (!cppProcess) {
         cppProcess = spawn('./personal_investment_guide_linux');
-        
+
 
 
 
