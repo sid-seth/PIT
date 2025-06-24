@@ -154,7 +154,7 @@ function App() {
     const handleSubmit_1 = async (event) => {
         try {
             const fixedInput = event.target.value;
-            const response = await fetch('http://localhost:5000/start-exe', {
+            const response = await fetch('https://pit-9h9i.onrender.com/start-exe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
