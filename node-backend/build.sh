@@ -2,7 +2,7 @@
 set -e  # Exit on any error
 
 echo "📦 Installing Python dependencies..."
-pip install -r node-backend/requirements.txt
+pip install -r requirements.txt
 
 echo "🏗️ Compiling personal_investment_guide.cpp..."
 g++ personal_investment_guide.cpp -o personal_investment_guide_linux
