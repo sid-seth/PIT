@@ -204,7 +204,7 @@ function App() {
        const fixedInput = event; // Button value ("1")
 
        // Send the fixed value to the backend
-       const response = await fetch("http://localhost:5000/send-input", {
+       const response = await fetch("https://pit-9h9i.onrender.com/send-input", {
            method: "POST",
            headers: {
                "Content-Type": "application/json",
@@ -280,7 +280,7 @@ function App() {
         const fixedInput = event.target.value; // Button value ("1")
 
         // Send the fixed value to the backend
-        const response = await fetch("http://localhost:5000/send-input", {
+        const response = await fetch("https://pit-9h9i.onrender.com/send-input", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -404,7 +404,7 @@ function App() {
        try{
            setOutput_1([]);
            const fixedInput = event.target.value;
-           const response = await fetch('http://localhost:5000/stop-exe', {
+           const response = await fetch('https://pit-9h9i.onrender.com/stop-exe', {
                method: 'POST',
                headers: {
                    'Content-Type': 'application/json',
