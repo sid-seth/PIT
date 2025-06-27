@@ -27,9 +27,10 @@ app.post('/start-exe', (req, res) => {
     if (cppProcess) {
         return res.status(400).json({ error: 'Process is already running' });
     }
-
+     
     const binaryPath = path.resolve(__dirname, 'personal_investment_guide_linux');
     let responded = false;
+    console.log("Attempting to run binary at:", binaryPath);
 
     cppProcess = spawn(binaryPath);
 
