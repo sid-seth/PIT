@@ -7,7 +7,7 @@
 #include<ostream>
 #include<fstream>
 #include<string>
-#include<Stdio.h>
+#include<stdio.h>
 #include <iomanip> 
 #include<chrono>
 #include <sstream>
