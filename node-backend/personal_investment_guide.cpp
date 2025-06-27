@@ -1,6 +1,6 @@
-#include<Iostream>
-#include<Vector>
-#include<Map>
+#include<iostream>
+#include<vector>
+#include<map>
 #include<algorithm>
 #include<unordered_map>
 #include<istream>
