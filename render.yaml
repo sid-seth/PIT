@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: personal-investment-guide
+    env: node
+    buildCommand: ./build.sh
+    startCommand: node node-backend/react_server.js
+    plan: free
