@@ -1,0 +1,203 @@
+/* File: CenteredButton.css */
+
+body, html {
+  margin: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ 
+}
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #121212, #1f1f1f);
+}
+
+.fancy-button {
+  padding: 16px 32px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #f0f0f0;
+  background: #2c2c2c;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.fancy-button:hover {
+  background: linear-gradient(145deg, #ff6ec4, #7873f5);
+  color: #ffffff;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #ff6ec4;
+}
+.fancy-clicked
+{
+    background: linear-gradient(145deg, #ff6ec4, #7873f5);
+  color: #ffffff;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #ff6ec4;
+}
+
+body {
+  background-color: #111;
+  margin: 0;
+  padding: 0;
+  font-family: monospace;
+  color: #f8f8f8;
+
+
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  background-color: #111;
+}
+
+.text-display {
+  font-size: 1.8rem;
+  color: #00ffcc;
+  margin-bottom: 24px;
+  min-height: 2.2rem;
+  letter-spacing: 1px;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2ch;
+  color: #00ffcc;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.fancy-button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  background-color: #00ffcc;
+  color: #111;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.fancy-button:hover {
+  background-color: #00ddb8;
+}
+
+.static-label {
+  font-weight: bold;
+  margin-right: 4px;
+  color: #00ffee;
+  font-size: 5rem;
+}
+
+
+.option-buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 40px;
+  gap: 16px;
+}
+
+.option-button {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: riseFadeIn 0.6s ease-out forwards;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  background-color: #00ffcc;
+  color: #111;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 255, 204, 0.3);
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.option-button:hover {
+  background-color: #00ddb8;
+  transform: translateY(-3px);
+}
+
+@keyframes riseFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.action-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 320px;
+  max-width: 90%;
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.action-card input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.submit-button {
+  padding: 10px;
+  background: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submit-button:hover {
+  background: #155ac1;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
