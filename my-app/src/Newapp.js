@@ -544,12 +544,7 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
         alert(`Dropdown submitted value: ${event}`);
       };
 
- const makethirdvis = (event) => {
-  setTimeout(() => {
-  
-    // setMakethird(prev => !prev);
-  }, 300); // adjust delay (in ms) as needed, e.g., 50–200ms
-};
+
        const field_val = (event) => {
   setTimeout(() => {
     console.log("mkbtn:", mkbtn);
