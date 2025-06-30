@@ -114,14 +114,14 @@ const actions = [
 "Make Investment",
 "Finance Information",
 "Investment Information",
+"Track Indexs",
 "save data",
-"load data",
-"Track Indexs"
+"load data"
 ];
 
 const mkactions = [
-"Fixed Deposit",
 "S . I . P",
+"Fixed Deposit",
 "E . T . F"
 
 ];
@@ -134,6 +134,7 @@ const Newapp = () => {
 
       const [input_income, setInput_income] = useState('');
       const [input_des, setInput_des] = useState('');
+    const [output_2, setOutput_2] = useState('');
 
       const [nosub, setNosub] = useState(true);
       const [mkbtn, setMkbtn] = useState(false);
@@ -197,10 +198,39 @@ const callCountRef = useRef(0);
     
  
   } 
-   
+   const handleSubmit_2 = async (event) => {
+       try{
+           setOutput_1([]);
+           const fixedInput = event.target.value;
+           const response = await fetch('https://pit-9h9i.onrender.com/stop-exe', {
+               method: 'POST',
+               headers: {
+                   'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ input: fixedInput }),
+            });
+            const data = await response.json();
+            if (response.ok) {
+                // Display the 'message' from the server (e.g., "Process started successfully")
+                // setOutput_2(data.message);
+                setOutput_2(String(data.message)); 
+            } else {
+                // Handle errors (e.g., "Process is already running")
+                setOutput_2(data.error || "An error occurred.");
+            }
+        }
+        catch(error)
+        {
+          const errorArray = error.message.split(" "); // Split the error message by spaces
+
+    setOutput_2(errorArray);
+            // setOutput_2(error);
+        }
+    };
   const handleOption_child = async (event) => {
        try{
-         const fixedInput = parseInt(event.target.value, 10);
+                  const fixedInput = parseInt(event.target.value, 10);
+
         // setMkbtn(fixedInput === 3 ? true : false);
         setNosub(true);
         // setMakeInvestment(true);
@@ -223,7 +253,7 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
 
         
         // Send the fixed value to the backend
-        const response = await fetch("http://localhost:5000/send-input", {
+        const response = await fetch("https://pit-9h9i.onrender.com/send-input", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -310,7 +340,7 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
 
         
         // Send the fixed value to the backend
-        const response = await fetch("http://localhost:5000/send-input", {
+        const response = await fetch("https://pit-9h9i.onrender.com/send-input", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -413,7 +443,7 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
   
         try {
             const fixedInput = event.target.value;
-            const response = await fetch('http://localhost:5000/start-exe', {
+            const response = await fetch('https://pit-9h9i.onrender.com/start-exe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -467,7 +497,7 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
        const fixedInput = event; // Button value ("1")
 
        // Send the fixed value to the backend
-       const response = await fetch("http://localhost:5000/send-input", {
+       const response = await fetch("https://pit-9h9i.onrender.com/send-input", {
            method: "POST",
            headers: {
                "Content-Type": "application/json",
@@ -621,7 +651,19 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
 
              <div className="action-card" style={{width:"40%",marginLeft:"auto",marginRight:"auto"}}>
 <h3 style={{color:"blue"}}>{selectedAction}</h3>
-              {output.map((line, index) => <div style={{color:"black"}} key={index}> Logs:{line}</div>)}
+              {/* {output.map((line, index) => <div style={{color:"black"}} key={index}> Logs:{line}</div>)} */}
+              {output.map((line, index) => {
+  if (line === "ERROR : Min Balance=1000") {
+     // trigger your function
+  }
+  return (
+    <div style={{ color: "black" }} key={index}>
+      Logs: {line}
+    </div>
+  );
+})}
+
+
 
           {/* <button onClick={()=>{handleDropdownSubmit();handleSubmit()}}>SUBMIT VALUE</button> */}
           
@@ -640,7 +682,7 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
               </button>
               
             ))}
-            <button className="submit-button"  onClick={(event)=>{field_val();setSelectedAction(null);handleClick(event);setMkbtn(false);
+            <button className="submit-button" value="5" onClick={(event)=>{handleOption_child(event);field_val();setSelectedAction(null);handleClick(event);setMkbtn(false);
     setNosub(true);setHide_submitted_fields(false);
 }}>CLOSE</button>
           </div>
@@ -714,8 +756,8 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
         <br /><br /><br /><br />
         <span style={{ margin: "auto" }}>
             {output_1.map((line, index) => <div key={index}>{line}</div>)}
-          
-          
+          <button onClick={handleSubmit_2} value="1">Terminate</button>
+          <div>{output_2}</div>
            Sometimes app takes 40-50 seconds to get its first response from server </span>
       </div>
     </div>

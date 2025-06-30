@@ -313,8 +313,9 @@ void loadData(std::vector<T*>& data, const std::string& filename) {
                 cout << "3. Make Investment\n";
                 cout << "4. Finance Information\n";
                 cout << "5. Investment Information\n";
-                cout << "6. save data\n";
-                cout << "7. load data\n";
+                cout << "6. Track indexes\n";
+                cout << "7. save data\n";
+                cout << "8. load data\n";
                 cout << "0. Exit\n";
                 cout << "Enter choice : END";
                 i=2;
@@ -372,7 +373,11 @@ void loadData(std::vector<T*>& data, const std::string& filename) {
                     }
                     break;
                 }
-                case 6:{
+                 case 6: {
+                    cout<<"running py script";
+                    system("python decision.py");
+                }
+                case 7: {
                     cout<<"SAVE data";
                     
                     vector<Transaction*> db1 = manager.transactions;
@@ -385,7 +390,7 @@ void loadData(std::vector<T*>& data, const std::string& filename) {
 
                    
                 }
-                case 7:{
+                case 8: {
                    
                     cout<<"Load Data";
                     manager.transactions={};
@@ -404,6 +409,7 @@ void loadData(std::vector<T*>& data, const std::string& filename) {
                     }
 
                 }
+               
 
                 case 0:
                     break;
@@ -421,7 +427,8 @@ void loadData(std::vector<T*>& data, const std::string& filename) {
             cout << "\nWhich one:\n";
             cout << "1. SIP\n";
             cout << "2. FD\n";
-            cout << "0. Go back\n";
+            cout << "3. ETF\n";
+            cout << "5. Go back\n";
             cout << "Enter your choice : ";
             cin >> sub;
 
@@ -447,6 +454,8 @@ void loadData(std::vector<T*>& data, const std::string& filename) {
                 case 2: {
                     double amt;
                     int dur;
+                    string des;
+
                     cout << "Enter amount : ";
                     cin >> amt;
                     if (balance - amt < 1000) {
@@ -455,6 +464,8 @@ void loadData(std::vector<T*>& data, const std::string& filename) {
                     }
                     cout << "Enter duration in yrs : ";
                     cin >> dur;
+                    cout << "Enter description ";
+                    cin >> des;
                     manager.addInvestment(new FD(amt, dur));
                     balance -= amt;
                     break;
@@ -480,20 +491,24 @@ void loadData(std::vector<T*>& data, const std::string& filename) {
                     balance -= amt;
                     break;
                 }
-                case 4:{
-                    system("python decision.py");
-                }
+                
 
                 case 5:
+                       {
+                           break;
 
+                       }
                     
-                    break;
 
                 default:
-                    cout << "Invalid choice.";
-                    break;
+                   {
+                       cout << "Invalid choice.";
+                       break;
+
+                   }
             }
         }
+        cout<<"Back to main menu";
     }
 };
 
