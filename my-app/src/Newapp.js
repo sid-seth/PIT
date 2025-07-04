@@ -447,15 +447,19 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
 
   const handleSubmit_1 = async (event) => {
   
+    setLoading(true);
+    const fixedInput = event.target.value;
     try {
-          setOutput_1(["processing please wait"]);
-          setLoading(true);
-            const fixedInput = event.target.value;
-            const response = await fetch('https://pit-9h9i.onrender.com/start-exe', {
+          // setOutput_1(["processing please wait"]);
+            // const fixedInput = event.target.value;
+
+
+            const response = await fetch('http://localhost:5000/start-exe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+
                 body: JSON.stringify({ input: fixedInput }), // Include the input
             });
     

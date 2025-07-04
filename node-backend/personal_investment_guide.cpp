@@ -515,7 +515,7 @@ void loadData(std::vector<T*>& data, const std::string& filename) {
 
 
 int main() {
-    // cout << "---Welcome to Finance Management System!!---\n";
+    cout << "---Welcome to PIT!---\n";
     int bal=0;
     User user(bal); //create user with initial balance 2000
     user.operations();
