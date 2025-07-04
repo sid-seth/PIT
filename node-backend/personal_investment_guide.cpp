@@ -302,24 +302,24 @@ void loadData(std::vector<T*>& data, const std::string& filename) {
     void operations() {
         
         int choice = -1;
-        int i=1;
+        // int i=1;
         while (choice != 0) {
-            if(i==1)
-            {
+            // if(i==1)
+            // {
 
-                cout << "\n--OPTIONS--\n";
-                cout << "1. Record INCOME\n";
-                cout << "2. Record EXPENDITURE\n";
-                cout << "3. Make Investment\n";
-                cout << "4. Finance Information\n";
-                cout << "5. Investment Information\n";
-                cout << "6. Track indexes\n";
-                cout << "7. save data\n";
-                cout << "8. load data\n";
-                cout << "0. Exit\n";
-                cout << "Enter choice : END";
-                i=2;
-            }
+            //     cout << "\n--OPTIONS--\n";
+            //     cout << "1. Record INCOME\n";
+            //     cout << "2. Record EXPENDITURE\n";
+            //     cout << "3. Make Investment\n";
+            //     cout << "4. Finance Information\n";
+            //     cout << "5. Investment Information\n";
+            //     cout << "6. Track indexes\n";
+            //     cout << "7. save data\n";
+            //     cout << "8. load data\n";
+            //     cout << "0. Exit\n";
+            //     cout << "Enter choice : END";
+            //     i=2;
+            // }
             cin >> choice;
 
             switch (choice) {
@@ -515,7 +515,7 @@ void loadData(std::vector<T*>& data, const std::string& filename) {
 
 
 int main() {
-    cout << "---Welcome to Finance Management System!!---\n";
+    // cout << "---Welcome to Finance Management System!!---\n";
     int bal=0;
     User user(bal); //create user with initial balance 2000
     user.operations();
