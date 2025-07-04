@@ -792,7 +792,7 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
 
         <br /><br /><br /><br />
         <span style={{ margin: "auto" }}>
-            {/* {output_1.map((line, index) => <div key={index}>{line}</div>)} */}
+            {output_1.map((line, index) => <div key={index}>{line}</div>)}
  
           <Button variant='outlined' onClick={handleSubmit_2} value="1">Terminate</Button>
           <div>{output_2}</div>
