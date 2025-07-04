@@ -99,6 +99,9 @@
 
 import React, {useEffect, useRef, useState } from 'react';
 import './Newapp.css';
+import Skeleton from '@mui/material/Skeleton';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
 const texts = [
   "Personal Investment Tracker",
@@ -131,6 +134,7 @@ const mkactions = [
 const Newapp = () => {
       const [output_1, setOutput_1] = useState([]);
       const [output, setOutput] = useState([]);
+      const [loading, setLoading] = useState(false);
 
       const [input_income, setInput_income] = useState('');
       const [input_des, setInput_des] = useState('');
@@ -321,6 +325,8 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
 
   const handleOption = async (event) => {
        try{
+            setOutput(["loading"]);
+
         //  const fixedInput = event.target.value; // Button value ("1")
          const fixedInput = parseInt(event.target.value, 10);
         //  setNosub(fixedInput);
@@ -441,7 +447,9 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
 
   const handleSubmit_1 = async (event) => {
   
-        try {
+    try {
+          setOutput_1(["processing please wait"]);
+          setLoading(true);
             const fixedInput = event.target.value;
             const response = await fetch('https://pit-9h9i.onrender.com/start-exe', {
                 method: 'POST',
@@ -452,7 +460,6 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
             });
     
             const data = await response.json(); // Parse the response
-    
             if (response.ok) {
                 // Display the 'message' from the server (e.g., "Process started successfully")
                 // setOutput_1(data.message);
@@ -486,6 +493,9 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
                 setOutput_1(lines);
             // setOutput_1("Failed to start the process.\n"); // Handle network or other errors
         }
+        finally {
+      setLoading(false);
+    }
     };
 
 
@@ -618,6 +628,33 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
 
 
       <button className={`fancy-button ${showOptions|mkOptions ? 'fancy-clicked' : ''}`}value="1" onClick={(event)=>{handleClick(event);handleSubmit_1(event);}}>{showOptions|mkOptions ? "Restart The Journey" : "Start Your Financial Journey"}</button>
+        
+        {loading ? (
+        <>
+          <div  style={{ width: '750px', height: '20px', marginBottom: '0.5rem' ,paddingBottom:"20px"}}> </div>
+
+           
+           <span style={{fontFamily:"Arial"}}> <Typography>Please wait it take around 40-50 sec to spin up the backend server</Typography></span>
+          <div className="skeleton" style={{borderRadius:"2%", paddingTop:"0px", width: '750px', height: 'auto', marginBottom: '0.5rem' }}>
+
+
+          <Skeleton animation="wave">
+          <Skeleton variant="rectangular" width={750} height={100} animation="wave" />
+          
+
+            {/* <Skeleton animation={false} /> */}
+          </Skeleton>
+           <Skeleton animation="wave">
+          <Skeleton variant="rectangular" width={750} height={100} animation="wave" />
+          
+
+       
+          </Skeleton>
+          
+          </div>
+        </>
+      ) : (
+      
 
 
       <div>
@@ -755,11 +792,14 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
 
         <br /><br /><br /><br />
         <span style={{ margin: "auto" }}>
-            {output_1.map((line, index) => <div key={index}>{line}</div>)}
-          <button onClick={handleSubmit_2} value="1">Terminate</button>
+            {/* {output_1.map((line, index) => <div key={index}>{line}</div>)} */}
+ 
+          <Button variant='outlined' onClick={handleSubmit_2} value="1">Terminate</Button>
           <div>{output_2}</div>
-           Sometimes app takes 40-50 seconds to get its first response from server </span>
+            </span>
       </div>
+
+)}
     </div>
   );
 };
