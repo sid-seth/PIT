@@ -102,7 +102,7 @@ import './Newapp.css';
 import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-
+import FloatingAIButton from './FloatingAIButton';
 const texts = [
   "Personal Investment Tracker",
   "Track Income",
@@ -639,6 +639,8 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
 
            
            <span style={{fontFamily:"Arial"}}> <Typography>Please wait it take around 40-50 sec to spin up the backend server</Typography></span>
+           <span style={{fontFamily:"Arial"}}> <Typography>Untill then try the "Analyze stock by AI" on the bottom right </Typography></span>
+
           <div className="skeleton" style={{borderRadius:"2%", paddingTop:"0px", width: '750px', height: 'auto', marginBottom: '0.5rem' }}>
 
 
@@ -804,6 +806,7 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
       </div>
 
 )}
+<FloatingAIButton />
     </div>
   );
 };
