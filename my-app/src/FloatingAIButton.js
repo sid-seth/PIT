@@ -3,9 +3,10 @@ import { Fab, Tooltip } from "@mui/material";
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 
 const FloatingAIButton = () => {
-  const handleClick = () => {
-    window.location.href = "https://ai-finance-analyst-by-sidseth.vercel.app/";
-  };
+ const handleClick = () => {
+  window.open("https://ai-finance-analyst-by-sidseth.vercel.app/", "_blank");
+};
+
 
   return (
     <Tooltip title="Analyze stocks using AI" placement="top">
