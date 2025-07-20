@@ -51,6 +51,7 @@ def get_word_between_dashes(my_string):
 
     # Extract the substring between the second and third dashes
     result = my_string[first_dash_index + 1:third_dash_index].strip()
+    
 
     return result
 # Example usage:
