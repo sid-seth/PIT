@@ -701,7 +701,7 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
   }
   return (
     <div style={{ color: "black" }} key={index}>
-      Logs: {line}
+      {line}
     </div>
   );
 })}
@@ -739,7 +739,7 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
 
              <div className="action-card" style={{width:"40%",marginLeft:"auto",marginRight:"auto"}}>
 <h3 style={{color:"blue"}}>{selectedAction}</h3>
-              {output.map((line, index) => <div style={{color:"black"}} key={index}> Logs:{line}</div>)}
+              {output.map((line, index) => <div style={{color:"black"}} key={index}>{line}</div>)}
 
           {/* <button onClick={()=>{handleDropdownSubmit();handleSubmit()}}>SUBMIT VALUE</button> */}
           <button className="submit-button"  onClick={(event)=>{field_val();setSelectedAction(null);
@@ -751,7 +751,7 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
                 
                 <div className="action-card" style={{width:"30%",marginLeft:"auto",marginRight:"auto"}}>
 <h3 style={{color:"blue"}}>{selectedAction}</h3>
-              {output.map((line, index) => <div style={{color:"black"}} key={index}> Logs:{line}</div>)}
+              {output.map((line, index) => <div style={{color:"black"}} key={index}>{line}</div>)}
 
             < input
             type="text"
@@ -774,7 +774,7 @@ console.log("Hide_submitted_fields:", Hide_submitted_fields);
 
                <div className="action-card" style={{width:"30%",marginLeft:"auto",marginRight:"auto"}}>
             <h3 style={{color:"blue"}}>{selectedAction}</h3>
-              {output.map((line, index) => <div style={{color:"black"}} key={index}> Logs:{line}</div>)}
+              {output.map((line, index) => <div style={{color:"black"}} key={index}>{line}</div>)}
           <input
             type="text"
             value={input_des}
